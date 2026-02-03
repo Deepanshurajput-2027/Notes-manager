@@ -5,6 +5,7 @@ const express=require("express")
 const app=express()
 const cors=require("cors")
 const noteModel = require("./models/note.model")
+const path =require("path")
 app.use(express.json())
 app.use(cors())
 
@@ -47,6 +48,10 @@ app.put("/api/notes/:id",async (req,res)=>{
     res.status(200).json({
         message:"note replaced successfully",
     })
+})
+
+app.use('*name',(req,res)=>{
+    res.sendFile(path.join(__dirname,'..','public/index.html'))
 })
 
 module.exports=app
