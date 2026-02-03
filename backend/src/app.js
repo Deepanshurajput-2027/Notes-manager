@@ -8,6 +8,7 @@ const noteModel = require("./models/note.model")
 const path =require("path")
 app.use(express.json())
 app.use(cors())
+app.use(express.static("/public"))
 
 app.post("/api/notes",async (req,res)=>{
     const {title,description}=req.body
