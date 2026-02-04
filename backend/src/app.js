@@ -45,7 +45,7 @@ app.patch("/api/notes/:id",async (req,res)=>{
 
 app.put("/api/notes/:id",async (req,res)=>{
     const {title,description}=req.body
-    await noteModel.findOneAndReplace(req.params.id,{title,description})
+    await noteModel.findOneAndReplace({_id:req.params.id},{title,description})
     res.status(200).json({
         message:"note replaced successfully",
     })

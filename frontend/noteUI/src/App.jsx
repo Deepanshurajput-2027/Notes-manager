@@ -6,7 +6,7 @@ const App = () => {
   const [notes, setnotes] = useState([])
 
  function fetchNotes(){
-   axios.get("https://notes-manager-eoom.onrender.com/api/notes")
+   axios.get("http://localhost:3000/api/notes")
   .then(res=>{
     console.log(res.data.notes)
     setnotes(res.data.notes)
@@ -25,7 +25,7 @@ const App = () => {
     const {title,description}=e.target.elements;
     console.log(title.value,description.value);
 
-    axios.post("https://notes-manager-eoom.onrender.com/api/notes",{
+    axios.post("http://localhost:3000/api/notes",{
       title:title.value,
       description:description.value
     })
@@ -33,11 +33,11 @@ const App = () => {
       console.log(res.data);
       fetchNotes();
     })
-    form.reset();
+    e.target.reset();
   }
 
   function deleteNotes(noteId){
-    axios.delete(`https://notes-manager-eoom.onrender.com/api/notes/${noteId}`)
+    axios.delete(`http://localhost:3000/api/notes/${noteId}`)
     .then(res=>{
       console.log(res.data);
       fetchNotes();     
@@ -47,7 +47,7 @@ const App = () => {
   function editNotes(noteId){
     const newDescription = prompt("Enter new description:");
     if(newDescription === null) return;
-    axios.patch(`https://notes-manager-eoom.onrender.com/api/notes/${noteId}`,{
+    axios.patch(`http://localhost:3000/api/notes/${noteId}`,{
       //-------------------------------------------------------------
       description:newDescription  
       //-------------------------------------------------------------
