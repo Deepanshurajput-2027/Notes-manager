@@ -8,7 +8,7 @@ const noteModel = require("./models/note.model")
 const path =require("path")
 app.use(express.json())
 app.use(cors())
-// In backend/src/app.js - line 11
+
 app.use(express.static(path.join(__dirname, "../public")))
 
 app.post("/api/notes",async (req,res)=>{
@@ -52,8 +52,8 @@ app.put("/api/notes/:id",async (req,res)=>{
     })
 })
 
-// In backend/src/app.js - line 55
-app.use('*', (req,res) => {
+
+app.use('/*name', (req,res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
 })
 
